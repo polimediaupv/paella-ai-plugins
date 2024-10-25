@@ -39,5 +39,9 @@
         & .tab-panel {
             height: 100%;
         }
+
+        & .tab-panel.tab-panel-disabled {
+            display: none;
+        }
     }
 }
