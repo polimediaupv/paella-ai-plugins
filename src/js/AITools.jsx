@@ -1,9 +1,10 @@
 import ReactDOM from "react-dom";
 import React, { useState, useEffect, useRef } from "react";
-import "./ChatApp.css";
+import "./AITools.css";
 import Chat from "./Chat.jsx";
+import TabContainer, { TabItem } from "./TabContainer.jsx";
 
-const ChatWindow = () => {
+const AIWindow = () => {
     const model = 'Llama-3.1-8B-Instruct-q4f32_1-MLC';
     const baseUrl = "webllm";
     const dialogRef = useRef();
@@ -37,18 +38,26 @@ const ChatWindow = () => {
 
     return <dialog ref={dialogRef}>
         <div className="dialog-content">
-            <Chat
-                promptMessage={"Eres un asistente que resuelve dudas de los usuarios. Responde a la pregunta."}
-                model={model}
-                baseUrl={baseUrl}
-            />
+            <TabContainer>
+                <TabItem label="Chat">
+                    <Chat
+                        promptMessage={"Eres un asistente que resuelve dudas de los usuarios. Responde a la pregunta."}
+                        model={model}
+                        baseUrl={baseUrl}
+                        className="ia-tools-tab-content"
+                    />
+                </TabItem>
+                <TabItem label="Other">
+                    <h2>Hello World!</h2>
+                </TabItem>
+            </TabContainer>
             <button onClick={() => hideDialog()}>Close</button>
         </div>
     </dialog>
 }
 
-const ChatApp = () => {
-    return  <ChatWindow />
+const AITools = () => {
+    return  <AIWindow />
 }
 
 export default function setupChat(element) {
@@ -57,8 +66,7 @@ export default function setupChat(element) {
     element.appendChild(appRootElement);
     const root = ReactDOM.createRoot(appRootElement);
 
-    console.log("Render chat");
-    root.render(<ChatApp />);
+    root.render(<AITools />);
 
     return {
         show() {

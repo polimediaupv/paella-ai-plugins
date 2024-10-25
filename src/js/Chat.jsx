@@ -5,7 +5,7 @@ import "./Chat.css";
 //model: 'Phi-3-mini-4k-instruct-q4f16_1-MLC',
 //model: 'Llama-3.2-3B-Instruct-q4f32_1-MLC',
 // baseUrl: "http://localhost:11434"
-export default function Chat({ promptMessage: initialPromptMessage, model = 'Llama-3.1-8B-Instruct-q4f32_1-MLC', baseUrl = "webllm" }) {
+export default function Chat({ className = "", promptMessage: initialPromptMessage, model = 'Llama-3.1-8B-Instruct-q4f32_1-MLC', baseUrl = "webllm" }) {
     const [promptMessage, setPromptMessage] = useState(initialPromptMessage);
     // const [inputText, setInputText] = useState(initialPromptMessage);
     const {
@@ -39,7 +39,7 @@ export default function Chat({ promptMessage: initialPromptMessage, model = 'Lla
     }
 
     return (
-        <section className="llm-chat">
+        <section className={`llm-chat${ className ? " " + className : "" }`}>
             { /*
             <header>
                 <form onSubmit={handleSubmitPrompt}>
@@ -58,6 +58,7 @@ export default function Chat({ promptMessage: initialPromptMessage, model = 'Lla
                 ready ? <footer>
                     <form onSubmit={submitMessage}>
                         <input ref={inputRef} type="text" value={input} onChange={(e) => setInput(e.target.value)} disabled={processing} />
+                        <button type="submit" disabled={processing}>Send</button>
                     </form>
                 </footer>
                 : 

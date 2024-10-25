@@ -30,6 +30,7 @@
         flex-direction: column;
         box-sizing: border-box;
         gap: 5px;
+        margin: 0;
     }
 
     & article {
@@ -66,22 +67,30 @@
 
             & li.msg-role-human {
                 align-self: flex-end;
-                background-color: rgb(246, 255, 194);
+                background-color: rgb(77, 82, 48);
             }
 
             & li.msg-role-system {
                 align-self: flex-start;
-                background-color: rgb(183, 233, 255);
+                background-color: rgb(81, 105, 115);
             }
         }
     }
 
     & footer {
         grid-area: footer;
-
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+    
         & form {
             margin-top: 20px;
             box-sizing: border-box;
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            gap: 7px;
 
             & input {
                 width: 100%;

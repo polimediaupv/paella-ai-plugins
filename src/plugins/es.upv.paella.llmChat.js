@@ -1,6 +1,6 @@
 import { ButtonPlugin } from 'paella-core';
 import LLMChatModule from './LLMChatModule';
-import setupChat from '../js/ChatApp.jsx';
+import setupChat from '../js/AITools.jsx';
 import ChatIcon from "../icons/chat.svg";
 
 export default class LLMChatPlugin extends ButtonPlugin {
