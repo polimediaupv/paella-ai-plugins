@@ -9,7 +9,7 @@ export default class LLMChatPlugin extends ButtonPlugin {
     }
 
     get name() {
-        return super.name || "es.upv.paella.video360Canvas";
+        return super.name || "es.upv.paella.llmChat";
     }
 
     async load() {
@@ -18,7 +18,7 @@ export default class LLMChatPlugin extends ButtonPlugin {
 
     async action() {
         if (!this._chat) {
-            this._chat = setupChat(document.body);
+            this._chat = setupChat(document.body, this);
             setTimeout(() => this._chat.show(), 50);
         }
         else if (this._chat.visible) {

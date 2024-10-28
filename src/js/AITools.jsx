@@ -4,7 +4,7 @@ import "./AITools.css";
 import Chat from "./Chat.jsx";
 import TabContainer, { TabItem } from "./TabContainer.jsx";
 
-const AIWindow = () => {
+const AIWindow = ({paellaPlugin}) => {
     const model = 'Llama-3.1-8B-Instruct-q4f32_1-MLC';
     const baseUrl = "webllm";
     const dialogRef = useRef();
@@ -47,7 +47,7 @@ const AIWindow = () => {
                         className="ia-tools-tab-content"
                     />
                 </TabItem>
-                <TabItem label="Other">
+                <TabItem label="Summary">
                     <h2>Hello World!</h2>
                 </TabItem>
             </TabContainer>
@@ -56,17 +56,17 @@ const AIWindow = () => {
     </dialog>
 }
 
-const AITools = () => {
-    return  <AIWindow />
+const AITools = () => {    
+    return  <AIWindow paellaPlugin={paellaPlugin} />
 }
 
-export default function setupChat(element) {
+export default function setupChat(element, paellaPlugin) {
     const appRootElement = document.createElement('div');
     appRootElement.classList.add("llm-chat-container");
     element.appendChild(appRootElement);
     const root = ReactDOM.createRoot(appRootElement);
 
-    root.render(<AITools />);
+    root.render(<AITools paellaPlugin={paellaPlugin}/>);
 
     return {
         show() {
