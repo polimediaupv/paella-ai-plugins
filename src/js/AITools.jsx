@@ -56,7 +56,7 @@ const AIWindow = ({paellaPlugin}) => {
     </dialog>
 }
 
-const AITools = () => {    
+const AITools = ({paellaPlugin}) => {    
     return  <AIWindow paellaPlugin={paellaPlugin} />
 }
 
