@@ -116,6 +116,16 @@
         "es.upv.paella.aiToolsPopUpPlugin": {
             "enabled": true,
             "side": "right"
+        },
+        "es.upv.paella.aitools.fileDataPlugin": {
+            "enabled": true,
+            "context": ["aitools"],
+            "files": {
+                "summary": { "file": "aitools/summary.txt" },
+                "faq": { "file": "aitools/faq.md" },
+                "study_plan": { "file": "aitools/study_plan.md" },
+                "timeline": { "file": "aitools/timeline.md" }
+            }
         }
     }
 }

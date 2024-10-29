@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./AITools.css";
 import Chat from "./Chat.jsx";
 import TabContainer, { TabItem } from "./TabContainer.jsx";
+import AIToolView from "./AIToolView.jsx"
 
 
 const CloseIcon = () => {
@@ -50,6 +51,32 @@ const AIWindow = ({paellaPlugin}) => {
                 <button onClick={() => hideDialog()}><CloseIcon /></button>
             </header>
             <TabContainer>
+                { paellaPlugin.summary && <TabItem label="Summary">
+                    <AIToolView
+                        markdown={paellaPlugin.summary}
+                        options={{ tables: true, emoji: true }}
+                    />
+                </TabItem>
+                }
+                <TabItem label="FAQ">
+                    <AIToolView
+                        markdown={paellaPlugin.faq}
+                        options={{ tables: true, emoji: true }}
+                    />
+                </TabItem>
+                <TabItem label="Study plan">
+                    <AIToolView
+                        markdown={paellaPlugin.study_plan}
+                        options={{ tables: true, emoji: true }}
+                    />
+                </TabItem>
+                <TabItem label="Timeline">
+                    <AIToolView
+                        markdown={paellaPlugin.timeline}
+                        options={{ tables: true, emoji: true }}
+                    />
+                </TabItem>
+
                 <TabItem label="Chat">
                     <Chat
                         promptMessage={"Eres un asistente que resuelve dudas de los usuarios. Responde a la pregunta."}
@@ -57,9 +84,6 @@ const AIWindow = ({paellaPlugin}) => {
                         baseUrl={baseUrl}
                         className="ia-tools-tab-content"
                     />
-                </TabItem>
-                <TabItem label="Summary">
-                    <h2>Hello World!</h2>
                 </TabItem>
             </TabContainer>
         </div>
