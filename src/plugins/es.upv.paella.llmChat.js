@@ -14,6 +14,11 @@ export default class LLMChatPlugin extends ButtonPlugin {
 
     async load() {
         this.icon = this.player.getCustomPluginIcon(this.name, "chat") || ChatIcon;
+        
+        this.player.data.read("aitools", "summary").then((data) => { this.summary = data; });
+        this.player.data.read("aitools", "faq").then((data) => { this.faq = data; });
+        this.player.data.read("aitools", "study_plan").then((data) => { this.study_plan = data; });
+        this.player.data.read("aitools", "timeline").then((data) => { this.timeline = data; });
     }
 
     async action() {
