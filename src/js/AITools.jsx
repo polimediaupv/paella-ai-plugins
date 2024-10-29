@@ -4,6 +4,14 @@ import "./AITools.css";
 import Chat from "./Chat.jsx";
 import TabContainer, { TabItem } from "./TabContainer.jsx";
 
+
+const CloseIcon = () => {
+    return (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+        <path d="M18 6l-12 12"></path>
+        <path d="M6 6l12 12"></path>
+    </svg>)
+}
+
 const AIWindow = ({paellaPlugin}) => {
     const model = 'Llama-3.1-8B-Instruct-q4f32_1-MLC';
     const baseUrl = "webllm";
@@ -27,17 +35,20 @@ const AIWindow = ({paellaPlugin}) => {
             hideDialog();
         }
 
-        window.addEventListener("paella-llm-chat:show", showListener);
-        window.addEventListener("paella-llm-chat:hide", hideListener);
+        window.addEventListener("paella-ai-tools:show", showListener);
+        window.addEventListener("paella-ai-tools:hide", hideListener);
 
         return () => {
-            window.removeEventListener("paella-llm-chat:show", showListener);
-            window.removeEventListener("paella-llm-chat:hide", hideListener);
+            window.removeEventListener("paella-ai-tools:show", showListener);
+            window.removeEventListener("paella-ai-tools:hide", hideListener);
         }
     }, []);
 
     return <dialog ref={dialogRef}>
         <div className="dialog-content">
+            <header>
+                <button onClick={() => hideDialog()}><CloseIcon /></button>
+            </header>
             <TabContainer>
                 <TabItem label="Chat">
                     <Chat
@@ -51,36 +62,49 @@ const AIWindow = ({paellaPlugin}) => {
                     <h2>Hello World!</h2>
                 </TabItem>
             </TabContainer>
-            <button onClick={() => hideDialog()}>Close</button>
         </div>
     </dialog>
 }
 
-const AITools = ({paellaPlugin}) => {    
+const AIToolsContainer = ({paellaPlugin}) => {    
     return  <AIWindow paellaPlugin={paellaPlugin} />
 }
 
-export default function setupChat(element, paellaPlugin) {
-    const appRootElement = document.createElement('div');
-    appRootElement.classList.add("llm-chat-container");
-    element.appendChild(appRootElement);
-    const root = ReactDOM.createRoot(appRootElement);
+let g_aiToolsMain = null;
 
-    root.render(<AITools paellaPlugin={paellaPlugin}/>);
-
-    return {
-        show() {
-            const evt = new CustomEvent("paella-llm-chat:show");
-            window.dispatchEvent(evt);
-        },
-
-        hide() {
-            const evt = new CustomEvent("paella-llm-chat:hide");
-            window.dispatchEvent(evt);
-        },
-
-        get visible() {
-            return appRootElement.querySelector("dialog")?.open;
+export default class AITools {
+    static Get(parentContainer, paellaPlugin) {
+        if (!g_aiToolsMain) {
+            g_aiToolsMain = new AITools(parentContainer, paellaPlugin);
+            setTimeout(() => g_aiToolsMain.show(), 50);
         }
+        return g_aiToolsMain;
+    }
+
+    constructor(parentElement, paellaPlugin) {
+        this._paellaPlugin = paellaPlugin;
+        this._parentElement = parentElement;
+
+        this._appRootElement = document.createElement('div');
+        this._appRootElement.classList.add("ai-tools-container");
+        
+        this._parentElement.appendChild(this._appRootElement);
+        const root = ReactDOM.createRoot(this._appRootElement);
+
+        root.render(<AIToolsContainer paellaPlugin={paellaPlugin}/>);
+    }
+
+    show() {
+        const evt = new CustomEvent("paella-ai-tools:show");
+        window.dispatchEvent(evt);
+    }
+
+    hide() {
+        const evt = new CustomEvent("paella-ai-tools:hide");
+        window.dispatchEvent(evt);
+    }
+
+    get visible() {
+        return this._appRootElement.querySelector("dialog")?.open;
     }
 }

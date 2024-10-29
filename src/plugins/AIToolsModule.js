@@ -3,10 +3,10 @@ import packageData from "../../package.json";
 
 let g_pluginModule = null;
 
-export default class LLMChatModule extends PluginModule {
+export default class AIToolsModule extends PluginModule {
     static Get() {
         if (!g_pluginModule) {
-            g_pluginModule = new LLMChatModule();
+            g_pluginModule = new AIToolsModule();
         }
         return g_pluginModule;
     }

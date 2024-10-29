@@ -3,12 +3,6 @@
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    /*grid-template-rows: 110px 1fr 60px;
-    grid-template-areas:
-        "header"
-        "chat"
-        "footer";
-    */
     display: grid;
     grid-template-rows: 1fr 60px;
     grid-template-areas:
@@ -104,9 +98,4 @@
     }
 
 
-}
-
-.llm-chat button {
-    background: rgb(183, 233, 255);
-    border: none;
 }

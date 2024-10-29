@@ -113,7 +113,7 @@
             "order": 1
         },
 
-        "es.upv.paella.llmChat": {
+        "es.upv.paella.aiToolsPopUpPlugin": {
             "enabled": true,
             "side": "right"
         }

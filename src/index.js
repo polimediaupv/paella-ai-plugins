@@ -1,19 +1,19 @@
 
-import LLMChat from './plugins/es.upv.paella.llmChat.js';
+import AIToolsPopUp from './plugins/es.upv.paella.aiToolsPopUpPlugin.js';
 
 export default function geChatPluginContext() {
     return require.context("./plugins", true, /\.js/)
 }
 
-export const webglPlugins = [
+export const aiToolsPlugin = [
     {
-        plugin: LLMChat,
+        plugin: AIToolsPopUp,
         config: {
             enabled: false
         }
     }
 ];
 
-export const allPlugins = webglPlugins;
+export const allPlugins = aiToolsPlugin;
 
-export const LLMChatPlugin = LLMChat;
+export const AIToolsPopUpPlugin = AIToolsPopUp;
