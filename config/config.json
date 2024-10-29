@@ -124,7 +124,8 @@
                 "summary": { "file": "aitools/summary.txt" },
                 "faq": { "file": "aitools/faq.md" },
                 "study_plan": { "file": "aitools/study_plan.md" },
-                "timeline": { "file": "aitools/timeline.md" }
+                "timeline": { "file": "aitools/timeline.md" },
+                "podcast": { "file": "aitools/podcast_script.json", "media": "aitools/podcast_audio.mp3" }
             }
         }
     }

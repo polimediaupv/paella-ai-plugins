@@ -33,7 +33,10 @@ export default class AIToolsFileDataPlugin extends DataPlugin {
                     }
                 });
 
-            return content;
+            return {
+                fileInfo: fileInfo,
+                content
+            };
         }
 
         return null;

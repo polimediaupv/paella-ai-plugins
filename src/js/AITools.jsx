@@ -4,7 +4,7 @@ import "./AITools.css";
 import Chat from "./Chat.jsx";
 import TabContainer, { TabItem } from "./TabContainer.jsx";
 import AIToolView from "./AIToolView.jsx"
-
+import AIToolPodcast from "./AIToolPodcast.jsx";
 
 const CloseIcon = () => {
     return (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
@@ -75,6 +75,9 @@ const AIWindow = ({paellaPlugin}) => {
                         markdown={paellaPlugin.timeline}
                         options={{ tables: true, emoji: true }}
                     />
+                </TabItem>
+                <TabItem label="Podcast">
+                    <AIToolPodcast data={paellaPlugin.podcast} podcastMediaUrl={`${paellaPlugin.player.repositoryUrl}/${paellaPlugin.player.videoId}/${paellaPlugin.podcast.fileInfo.media}`}/>
                 </TabItem>
 
                 <TabItem label="Chat">
