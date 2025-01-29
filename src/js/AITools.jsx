@@ -53,34 +53,37 @@ const AIWindow = ({paellaPlugin}) => {
             <TabContainer>
                 { paellaPlugin.summary && <TabItem label="Summary">
                     <AIToolView
-                        markdown={paellaPlugin.summary}
+                        markdown={paellaPlugin.summary.content}
                         options={{ tables: true, emoji: true }}
                     />
                 </TabItem>
                 }
-                <TabItem label="FAQ">
+                { paellaPlugin.faq && <TabItem label="FAQ">
                     <AIToolView
-                        markdown={paellaPlugin.faq}
+                        markdown={paellaPlugin.faq.content}
                         options={{ tables: true, emoji: true }}
                     />
                 </TabItem>
-                <TabItem label="Study plan">
+                }
+                { paellaPlugin.study_plan && <TabItem label="Study plan">
                     <AIToolView
-                        markdown={paellaPlugin.study_plan}
+                        markdown={paellaPlugin.study_plan.content}
                         options={{ tables: true, emoji: true }}
                     />
                 </TabItem>
-                <TabItem label="Timeline">
+                }
+                { paellaPlugin.timeline && <TabItem label="Timeline">
                     <AIToolView
-                        markdown={paellaPlugin.timeline}
+                        markdown={paellaPlugin.timeline.content}
                         options={{ tables: true, emoji: true }}
                     />
                 </TabItem>
-                <TabItem label="Podcast">
+                }
+                { paellaPlugin.podcast?.content && <TabItem label="Podcast">
                     <AIToolPodcast data={paellaPlugin.podcast} podcastMediaUrl={`${paellaPlugin.player.repositoryUrl}/${paellaPlugin.player.videoId}/${paellaPlugin.podcast.fileInfo.media}`}/>
                 </TabItem>
-
-                <TabItem label="Chat">
+                }
+                { paellaPlugin.config?.chat?.enabled && <TabItem label="Chat">
                     <Chat
                         promptMessage={"Eres un asistente que resuelve dudas de los usuarios. Responde a la pregunta."}
                         model={model}
@@ -88,6 +91,7 @@ const AIWindow = ({paellaPlugin}) => {
                         className="ia-tools-tab-content"
                     />
                 </TabItem>
+                }
             </TabContainer>
         </div>
     </dialog>

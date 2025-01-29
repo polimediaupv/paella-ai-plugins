@@ -115,7 +115,10 @@
 
         "es.upv.paella.aiToolsPopUpPlugin": {
             "enabled": true,
-            "side": "right"
+            "side": "right",
+            "chat": {
+                "enabled": false                
+            }
         },
         "es.upv.paella.aitools.fileDataPlugin": {
             "enabled": true,
