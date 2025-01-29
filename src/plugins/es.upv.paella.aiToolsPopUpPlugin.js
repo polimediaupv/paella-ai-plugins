@@ -22,7 +22,7 @@ export default class AIToolsPopUpPlugin extends ButtonPlugin {
         this.summary = await this.player.data.read("aitools", "summary");
         this.faq = await this.player.data.read("aitools", "faq");
         this.study_plan = await this.player.data.read("aitools", "study_plan");
-        this.timeline = await this.player.data.read("aitools", "summary");
+        this.timeline = await this.player.data.read("aitools", "timeline");
         this.podcast = await this.player.data.read("aitools", "podcast");
         
 
