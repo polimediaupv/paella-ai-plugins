@@ -1,0 +1,41 @@
+{
+	"metadata": {
+		"duration": 1,
+		"title": "AI Tools Example",
+		"preview": "https://media.upv.es/resources/imported/polimedia/f84c1950-1c21-11ef-a34b-7fb274533a12/slides/frame.0.jpg"
+	},
+	"streams": [
+		{
+			"sources": {
+				"hls": [
+					{
+						"src": "https://media.upv.es/resources/imported/polimedia/f84c1950-1c21-11ef-a34b-7fb274533a12/polimedia/polimedia-hls-presenter-master.m3u8",
+						"mimetype": "video/mp4",
+						"res": {
+							"w": "1920",
+							"h": "1080"
+						}
+					}
+				]
+			},
+			"content":"presenter"
+		}
+	],
+	"frameList": [
+		{
+			"id": "frame_0",
+			"mimetype": "image/jpeg",
+			"time": 0,
+			"url": "https://media.upv.es/resources/imported/polimedia/f84c1950-1c21-11ef-a34b-7fb274533a12/slides/frame.0.jpg",
+			"thumb": "https://media.upv.es/resources/imported/polimedia/f84c1950-1c21-11ef-a34b-7fb274533a12/slides/thumb.0.jpg"
+		}
+	],
+	"captions": [
+		{
+			"lang": "en",
+			"text": "English (traducción automática)",
+			"format": "vtt",
+			"url": "captions.en.vtt"
+		}
+	]
+}
