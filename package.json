@@ -1,16 +1,16 @@
 {
-  "name": "paella-llm-chat",
-  "version": "1.41.1",
-  "description": "LLM chat for paella-core",
+  "name": "paella-ai-plugins",
+  "version": "1.50.0",
+  "description": "AI plugins for paella-core",
   "main": "src/index.js",
-  "module": "dist/paella-llm-chat.js",
+  "module": "dist/paella-ai-plugins.js",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve --mode development --config webpack.debug.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/polimediaupv/paella-webgl-plugins.git"
+    "url": "git+https://github.com/polimediaupv/paella-ai-plugins.git"
   },
   "keywords": [
     "paella",
@@ -24,9 +24,9 @@
   "author": "Fernando Serrano Carpena <ferserc1@gmail.com>",
   "license": "SEE LICENSE IN license.txt",
   "bugs": {
-    "url": "https://github.com/polimediaupv/paella-webgl-plugins/issues"
+    "url": "https://github.com/polimediaupv/paella-ai-plugins/issues"
   },
-  "homepage": "https://github.com/polimediaupv/paella-webgl-plugins#readme",
+  "homepage": "https://github.com/polimediaupv/paella-ai-plugins#readme",
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/preset-env": "^7.12.16",
