@@ -113,11 +113,19 @@
             "order": 1
         },
 
+        "es.upv.paella.vttManifestCaptionsPlugin": {
+            "enabled": true
+        },
+
+        "es.upv.paella.dfxpManifestCaptionsPlugin": {
+            "enabled": true
+        },
+
         "es.upv.paella.aiToolsPopUpPlugin": {
             "enabled": true,
             "side": "right",
             "chat": {
-                "enabled": false                
+                "enabled": true                
             }
         },
         "es.upv.paella.aitools.fileDataPlugin": {
@@ -128,7 +136,7 @@
                 "faq": { "file": "aitools/faq.md" },
                 "study_plan": { "file": "aitools/study_plan.md" },
                 "timeline": { "file": "aitools/timeline.md" },
-                "podcast": { "file": "aitools/podcast_script.json", "media": "aitools/podcast_audio.mp3" }
+                "podcast": { "file": "aitools/podcast_script.json", "media": "aitools/podcast_audio.wav" }
             }
         }
     }
