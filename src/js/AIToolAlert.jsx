@@ -1,7 +1,10 @@
 import React from "react";
 import "./AIToolAlert.css";
+import { usePaellaPlugin } from "./react-context";
 
 export default function AIToolAlert() {
+
+    const paellaPlugin = usePaellaPlugin();
     return (
         <div className="aitool-alert">                
             <p> <strong>Warning!</strong> This content has been created by an artificial intelligence tool.</p>

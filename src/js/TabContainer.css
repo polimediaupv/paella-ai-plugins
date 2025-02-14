@@ -1,10 +1,13 @@
 
 .tab-container {
     display: grid;
-    grid-template-rows: 1fr calc(100% - 32px);
+    grid-template-rows: 32px calc(100% - 32px);
     height: 100%;
     box-sizing: border-box;
     color: var(--main-fg-color);
+    /* overflow: hidden; */
+    scrollbar-color: var(--main-bg-color) transparent;
+    scrollbar-width: thin;    
 
     & > nav > ul {
         list-style: none;
@@ -35,6 +38,7 @@
         height: 100%;
         background-color: transparent;
         box-sizing: border-box;
+        /* overflow: auto; */        
 
         & .tab-panel {
             height: 100%;

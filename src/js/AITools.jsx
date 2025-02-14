@@ -1,30 +1,30 @@
-import ReactDOM from "react-dom";
+import {createRoot} from "react-dom/client";
 import React, { useState, useEffect, useRef } from "react";
 import "./AITools.css";
-import Chat from "./Chat.jsx";
+import AIToolChat from "./AIToolChat.jsx";
 import TabContainer, { TabItem } from "./TabContainer.jsx";
 import AIToolView from "./AIToolView.jsx"
 import AIToolPodcast from "./AIToolPodcast.jsx";
+import { PaellaPluginProvider, usePaellaPlugin } from "./react-context.js";
+
 
 const CloseIcon = () => {
-    return (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+    return (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" width="24" height="24" strokeWidth="2">
         <path d="M18 6l-12 12"></path>
         <path d="M6 6l12 12"></path>
     </svg>)
 }
 
-const AIWindow = ({paellaPlugin}) => {
-    const model = 'Llama-3.1-8B-Instruct-q4f32_1-MLC';
-    const baseUrl = "webllm";
+const AIWindow = () => {
     const dialogRef = useRef();
 
+    const paellaPlugin = usePaellaPlugin();
+    
     const showDialog = () => {
-        console.log("show dialog");
         dialogRef.current?.show();
     }
 
     const hideDialog = () => {
-        console.log("hide dialog");
         dialogRef.current?.close();
     }
 
@@ -51,45 +51,40 @@ const AIWindow = ({paellaPlugin}) => {
                 <button onClick={() => hideDialog()}><CloseIcon /></button>
             </header>
             <TabContainer>
-                { paellaPlugin.summary && <TabItem label="Summary">
+                { paellaPlugin.summary && <TabItem label={paellaPlugin.player.translate("Summary")}>
                     <AIToolView
                         markdown={paellaPlugin.summary.content}
                         options={{ tables: true, emoji: true }}
                     />
                 </TabItem>
                 }
-                { paellaPlugin.faq && <TabItem label="FAQ">
+                { paellaPlugin.faq && <TabItem label={paellaPlugin.player.translate("FAQ")}>
                     <AIToolView
                         markdown={paellaPlugin.faq.content}
                         options={{ tables: true, emoji: true }}
                     />
                 </TabItem>
                 }
-                { paellaPlugin.study_plan && <TabItem label="Study plan">
+                { paellaPlugin.study_plan && <TabItem label={paellaPlugin.player.translate("Study plan")}>
                     <AIToolView
                         markdown={paellaPlugin.study_plan.content}
                         options={{ tables: true, emoji: true }}
                     />
                 </TabItem>
                 }
-                { paellaPlugin.timeline && <TabItem label="Timeline">
+                { paellaPlugin.timeline && <TabItem label={paellaPlugin.player.translate("Timeline")}>
                     <AIToolView
                         markdown={paellaPlugin.timeline.content}
                         options={{ tables: true, emoji: true }}
                     />
                 </TabItem>
                 }
-                { paellaPlugin.podcast?.content && <TabItem label="Podcast">
+                { paellaPlugin.podcast?.content && <TabItem label={paellaPlugin.player.translate("Podcast")}>
                     <AIToolPodcast data={paellaPlugin.podcast} podcastMediaUrl={`${paellaPlugin.player.repositoryUrl}/${paellaPlugin.player.videoId}/${paellaPlugin.podcast.fileInfo.media}`}/>
                 </TabItem>
                 }
-                { paellaPlugin.config?.chat?.enabled && <TabItem label="Chat">
-                    <Chat
-                        promptMessage={"Eres un asistente que resuelve dudas de los usuarios. Responde a la pregunta."}
-                        model={model}
-                        baseUrl={baseUrl}
-                        className="ia-tools-tab-content"
-                    />
+                { paellaPlugin.config?.chat?.enabled && <TabItem label={paellaPlugin.player.translate("Chat")}>
+                    <AIToolChat className="ia-tools-tab-content" />
                 </TabItem>
                 }
             </TabContainer>
@@ -97,9 +92,7 @@ const AIWindow = ({paellaPlugin}) => {
     </dialog>
 }
 
-const AIToolsContainer = ({paellaPlugin}) => {    
-    return  <AIWindow paellaPlugin={paellaPlugin} />
-}
+
 
 let g_aiToolsMain = null;
 
@@ -120,9 +113,13 @@ export default class AITools {
         this._appRootElement.classList.add("ai-tools-container");
         
         this._parentElement.appendChild(this._appRootElement);
-        const root = ReactDOM.createRoot(this._appRootElement);
+        const root = createRoot(this._appRootElement);
 
-        root.render(<AIToolsContainer paellaPlugin={paellaPlugin}/>);
+        root.render(
+            <PaellaPluginProvider value={paellaPlugin}>
+                <AIWindow />
+            </PaellaPluginProvider>
+        );
     }
 
     show() {

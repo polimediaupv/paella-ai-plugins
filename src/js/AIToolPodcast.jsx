@@ -8,7 +8,6 @@ export default function AIToolPodcast({data, podcastMediaUrl}) {
     }
     catch (e) {}
     
-    console.log(script);
     return (
         <div
             className="aitool-podcast"

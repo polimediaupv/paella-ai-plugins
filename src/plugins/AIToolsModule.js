@@ -12,7 +12,7 @@ export default class AIToolsModule extends PluginModule {
     }
 
     get moduleName() {
-        return "paella-llm-chat";
+        return "paella-ai-plugins";
     }
 
     get moduleVersion() {
